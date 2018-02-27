@@ -4,6 +4,7 @@ pipeline {
     stage('build') {
       steps {
         stash(name: 'build-stash', includes: '**/**')
+        sh "echo ${BRANCH_NAME}"
       }
     }
     stage('publish') {
@@ -25,5 +26,6 @@ pipeline {
   }
   environment {
     isPublish = true
+    BRANCH_NAME = "${env.BRANCH_NAME}"
   }
 }
