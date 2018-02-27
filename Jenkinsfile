@@ -19,7 +19,6 @@ pipeline {
           agent any
           steps {
             unstash 'build-stash'
-            archiveArtifacts '**/build/libs/*.jar'
           }
         }
       }
