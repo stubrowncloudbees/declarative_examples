@@ -3,7 +3,6 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh "./gradlew clean build -PisPublish=${isPublish}"
         stash(name: 'build-stash', includes: '**/build/**/*')
       }
     }
