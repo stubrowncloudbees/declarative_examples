@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        stash(name: 'build-stash', includes: '**/build/**/*')
+        stash(name: 'build-stash', includes: '**/**')
       }
     }
     stage('publish') {
