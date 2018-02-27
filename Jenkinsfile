@@ -32,7 +32,7 @@ pipeline {
           }
         }
         
-        sh 'sh \'printenv\''
+        sh 'printenv'
       }
     }
   }
