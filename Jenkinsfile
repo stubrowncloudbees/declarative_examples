@@ -12,7 +12,6 @@ pipeline {
           agent any
           steps {
             unstash 'build-stash'
-            junit '**/build/test-results/**/*.xml'
           }
         }
         stage('publish artifacts') {
