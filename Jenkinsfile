@@ -32,7 +32,6 @@ pipeline {
           }
         }
         
-        sh 'echo ${env.isPublish)'
       }
     }
   }
