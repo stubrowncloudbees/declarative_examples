@@ -32,7 +32,7 @@ pipeline {
           }
         }
         
-        sh 'printenv'
+        sh 'echo $isPublish'
       }
     }
   }
