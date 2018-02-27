@@ -32,7 +32,7 @@ pipeline {
           }
         }
         
-        sh 'echo isPublish'
+        sh 'echo ${isPublish)'
       }
     }
   }
