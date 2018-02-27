@@ -23,6 +23,15 @@ pipeline {
         }
       }
     }
+    stage('Yes or no') {
+      agent any
+      steps {
+        script {
+          println("stu")
+        }
+        
+      }
+    }
   }
   environment {
     isPublish = true
