@@ -27,14 +27,16 @@ pipeline {
       agent any
       steps {
         script {
-          println("stu")
+          if (env.BRANCH_NAME == 'master'){
+            isPublish = true
+          }
         }
         
+        sh 'echo isPublish'
       }
     }
   }
   environment {
-    isPublish = true
-    BRANCH_NAME = "${env.BRANCH_NAME}"
+    isPublish = false
   }
 }
