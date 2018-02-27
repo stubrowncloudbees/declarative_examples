@@ -27,7 +27,7 @@ pipeline {
       agent any
       steps {
         script {
-          if (env.BRANCH_NAME == 'master'){
+          if (env.BRANCH_NAME == 'madster'){
             isPublish = true
           }
         }
