@@ -1,6 +1,6 @@
 pipeline {
   agent {
-          label 'my-pod'
+    label 'my-pod'
   }
   stages {
     stage('build') {
@@ -26,15 +26,24 @@ pipeline {
       }
     }
     stage('Yes or no') {
-      agent any
-      steps {
-        script {
-          if (env.BRANCH_NAME == 'madster'){
-            isPublish = true
+      parallel {
+        stage('Yes or no') {
+          agent any
+          steps {
+            script {
+              if (env.BRANCH_NAME == 'madster'){
+                isPublish = true
+              }
+            }
+            
+            sh 'echo $isPublish'
           }
         }
-        
-        sh 'echo $isPublish'
+        stage('Maven') {
+          steps {
+            sh 'mvn -version'
+          }
+        }
       }
     }
   }
