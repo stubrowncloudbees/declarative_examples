@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent 
+  
+  node {
+          label 'my-pod'
+  }
   stages {
     stage('build') {
       steps {
