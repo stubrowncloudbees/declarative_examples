@@ -1,42 +1,23 @@
 pipeline {
-  agent any
-  stages {
-    stage('build') {
-      steps {
-        stash(name: 'build-stash', includes: '**/**')
-        sh "echo ${BRANCH_NAME}"
-      }
-    }
-    stage('publish') {
-      parallel {
-        stage('publish junit results') {
-          agent any
-          steps {
-            unstash 'build-stash'
-          }
-        }
-        stage('publish artifacts') {
-          agent any
-          steps {
-            unstash 'build-stash'
-          }
-        }
-      }
-    }
-    stage('Yes or no') {
-      agent any
-      steps {
-        script {
-          if (env.BRANCH_NAME == 'madster'){
-            isPublish = true
-          }
-        }
-        
-        sh 'echo $isPublish'
+  agent {
+    kubernetes {
+      //cloud 'kubernetes'
+      label 'mypod'
+      containerTemplate {
+        name 'maven'
+        image 'maven:3.3.9-jdk-8-alpine'
+        ttyEnabled true
+        command 'cat'
       }
     }
   }
-  environment {
-    isPublish = false
+  stages {
+    stage('Run maven') {
+      steps {
+        container('maven') {
+          sh 'mvn -version'
+        }
+      }
+    }
   }
 }
