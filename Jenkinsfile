@@ -1,7 +1,5 @@
 pipeline {
   agent 
-  
-  node {
           label 'my-pod'
   }
   stages {
