@@ -4,7 +4,7 @@ pipeline {
     stage('build') {
       steps {
         stash(name: 'build-stash', includes: '**/**')
-        sh "echo ${BRANCH_NAME}"
+        sh "echo  ${BRANCH_NAME}"
       }
     }
     stage('publish') {
